@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-row>
+    <ion-col>
+      <ion-button expand="full" style="--background:#FF616D" (click)="modalAgregarFoto(fotosContrato)">
+        <h1 class="textBlue" style="color:white"> AGREGAR FOTO AL CONTRATO</h1>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col *ngFor="let fotos of fotosContrato" class="ion-text-center" size=4 style="margin-right: 50px; margin-left: auto" (click)="verPsicologo(s)">
+        <img src="{{fotos.data}}" style="margin: auto; width: 75px; height: 75px; display: block; border-radius: 10px; zoom:1.4;transform: rotate(90deg)">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+</ion-content>

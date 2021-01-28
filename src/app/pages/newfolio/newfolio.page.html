@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{book.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <h2 class="title-contract">Contrato N° {{contract.contratoSafi}}</h2>
+  <ion-item>
+    <ion-label class="ion-text-wrap" color=primary position="floating" style="font-weight: bold;">Asunto :</ion-label>
+    <ion-input color=dark type=text name=name [(ngModel)]="newFolio.asunto"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" style="--min-height: 26px;height: 29px;">
+    <ion-label class="ion-text-wrap" color=primary position="stacked" style="font-weight: bold; margin-bottom: 9px;">Contenido: </ion-label>
+  </ion-item>
+  <ion-item>
+    <quill-editor [(ngModel)]="newFolio.contenido" placeholder="" style="width: 100%">
+      <div quill-editor-toolbar>
+        <span class="ql-formats" style="margin-right: 0px">
+          <button class="ql-bold"></button>
+          <button class="ql-italic"></button>
+          <button class="ql-underline"></button>
+        </span>
+        <span class="ql-formats" style="margin-right: 0px">
+          <button class="ql-indent" value="-1"></button>
+          <button class="ql-indent" value="+1"></button>
+        </span>
+        <span class="ql-formats" style="margin-right: 0px">
+          <button class="ql-list" value="ordered"></button>
+          <button class="ql-list" value="bullet"></button>
+        </span>
+        <span class="ql-formats" style="margin-right: 0px">
+          <select class="ql-size">
+            <option value="small"></option>
+            <option selected></option>
+            <option value="large"></option>
+            <option value="huge"></option>
+          </select>
+        </span>
+      </div>
+    </quill-editor>
+  </ion-item>
+
+  <ion-item *ngIf="book.type == 0">
+    <ion-label color=primary position="floating" style="font-weight: bold">Categoria: </ion-label>
+    <ion-select  placeholder="Seleccionar categoria" color=dark style="max-width: 100%;width: 100%;" [(ngModel)]="newFolio.categoria" okText="Seleccionar" cancelText="Cancelar">
+      <ion-select-option value="7">Anulación</ion-select-option>
+      <ion-select-option value="4">Citación</ion-select-option>
+      <ion-select-option value="5">Creación de libro</ion-select-option>
+      <ion-select-option value="6">Creación de usuario</ion-select-option>
+      <ion-select-option value="0">Entrega de documentación</ion-select-option>
+      <ion-select-option value="3">Instrucción</ion-select-option>
+      <ion-select-option value="9">Multa</ion-select-option>
+      <ion-select-option value="1">Notificación</ion-select-option>
+      <ion-select-option value="8">Rectificación</ion-select-option>
+      <ion-select-option value="2">Solicitud</ion-select-option>
+      <ion-select-option value="10">Entrega terreno</ion-select-option>
+      <ion-select-option *ngIf="contract.contratoEstado == 1" value="11">Recepción provisoria</ion-select-option>
+      <ion-select-option *ngIf="contract.contratoEstado == 2" value="12">Recepción definitiva</ion-select-option>
+      <ion-select-option value="16">Constancia</ion-select-option>
+      <ion-select-option value="17">Alta de Libro</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="book.type != 0">
+    <ion-label position=floating color=primary  style="font-weight: bold;">Categoria: </ion-label>
+    <ion-select placeholder="Seleccionar categoria" color=dark style="max-width: 100%;width: 100%;" [(ngModel)]="newFolio.categoria" okText="Seleccionar" cancelText="Cancelar">
+      <ion-select-option value="4">Citación</ion-select-option>
+      <ion-select-option value="0">Entrega de documentación</ion-select-option>
+      <ion-select-option value="13">Informa</ion-select-option>
+      <ion-select-option value="3">Instrucción</ion-select-option>
+      <ion-select-option value="1">Notificación</ion-select-option>
+      <ion-select-option value="14">Respuesta</ion-select-option>
+      <ion-select-option value="15">Reiteración</ion-select-option>
+      <ion-select-option value="2">Solicitud</ion-select-option>
+      <ion-select-option value="16">Constancia</ion-select-option>
+      <ion-select-option value="17">Alta de Libro</ion-select-option>
+      <ion-select-option *ngIf="book.type == 2" value="18">Incidente</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color=primary  style="font-weight: bold;">Prioridad: </ion-label>
+    <ion-select placeholder="Seleccionar prioridad" color=dark style="max-width: 100%;width: 100%;" [(ngModel)]="newFolio.prioridad" okText="Seleccionar" cancelText="Cancelar">
+      <ion-select-option value="0">Baja</ion-select-option>
+      <ion-select-option value="1">Media</ion-select-option>
+      <ion-select-option value="2">Alta</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label *ngIf="this.isFecha" class="ion-text-wrap" color=primary position=floating style="font-weight: bold;">Fecha limite: </ion-label>
+    <ion-label *ngIf="!this.isFecha" class="ion-text-wrap" color=primary position=fixed style="font-weight: bold;">Fecha limite: </ion-label>
+    <ion-checkbox slot="start" color="primary" [(ngModel)]="this.isFecha" style="margin: auto;margin-right: 4%;"></ion-checkbox>
+    <ion-input *ngIf="this.isFecha" color=dark type=date name=date [(ngModel)]="newFolio.fecha_limite"></ion-input>
+  </ion-item>
+
+  <div class="end" style="margin-top: 3%;">
+    <ion-button expand="block" (click)="createFolio()">
+      Crear Folio
+    </ion-button>
+  </div>
+</ion-content>

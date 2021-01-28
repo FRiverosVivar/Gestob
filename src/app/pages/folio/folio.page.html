@@ -1,0 +1,197 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{book.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="select" (ionChange)="segmentChanged($event)">
+    <ion-segment-button  value="all" style="font-size: 0.6rem;text-transform: initial;width: 60px;min-width: 60px !important;">
+      <ion-icon name="filing"></ion-icon>
+      Todos
+    </ion-segment-button>
+    <ion-segment-button value="eraser" style="font-size: 0.6rem;text-transform: initial;width: 60px;min-width: 60px !important;">
+      <ion-icon name="document"></ion-icon>
+      Borradores
+    </ion-segment-button>
+    <ion-segment-button value="signed" style="font-size: 0.6rem;text-transform: initial;width: 60px;min-width: 60px !important;">
+      <ion-icon name="create"></ion-icon>
+      Firmados
+    </ion-segment-button>
+    <ion-segment-button value="look" style="font-size: 0.6rem;text-transform: initial;width: 60px;min-width: 60px !important;">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      Vistos
+    </ion-segment-button>
+    <ion-segment-button value="alert" style="font-size: 0.6rem;text-transform: initial;width: 60px;min-width: 60px !important;">
+      <ion-icon name="notifications"></ion-icon>
+      Alertas
+    </ion-segment-button>
+  </ion-segment>
+  
+  <h2 class="title-contract">Contrato N° {{contract.contratoSafi}}</h2>
+  
+  <ion-list *ngIf="this.select == 'all'">
+    <ion-item lines="full" *ngFor="let folio of this.folios">
+      <ion-grid>
+        <ion-row (click) = "showFolio(folio)">
+          <ion-col *ngIf="folio.estado == 0" style="background-image: linear-gradient(-90deg,#8c00ff,#0ef);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col *ngIf="folio.estado == 1" style="background-image: linear-gradient(-90deg,#ffc400,#ef0);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col *ngIf="folio.estado == 2" style="background-image: linear-gradient(-90deg,#0faf01,#7efc2a);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col *ngIf="folio.estado == 3" style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+            <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+            <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+            <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+            <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+            <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+            <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+            <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <div *ngIf="foliosOffline">
+      <ion-item lines="full" *ngFor="let folio of this.foliosOffline">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col *ngIf="folio.estado == 0" style="background-image: linear-gradient(-90deg,#8c00ff,#0ef);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col *ngIf="folio.estado == 1" style="background-image: linear-gradient(-90deg,#ffc400,#ef0);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col *ngIf="folio.estado == 2" style="background-image: linear-gradient(-90deg,#0faf01,#7efc2a);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col *ngIf="folio.estado == 3" style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="this.select == 'eraser'">
+    <div *ngFor="let folio of this.folios">
+      <ion-item lines="full" *ngIf="folio.estado == 0">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col  style="background-image: linear-gradient(-90deg,#8c00ff,#0ef);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+    <div *ngIf="foliosOffline">
+      <ion-item lines="full" *ngFor="let folio of this.foliosOffline">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col *ngIf="folio.estado == 0" style="background-image: linear-gradient(-90deg,#8c00ff,#0ef);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="this.select == 'signed'">
+    <div *ngFor="let folio of this.folios">
+      <ion-item lines="full" *ngIf="folio.estado == 1">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col  style="background-image: linear-gradient(-90deg,#ffc400,#ef0);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="this.select == 'look'">
+    <div *ngFor="let folio of this.folios">
+      <ion-item *ngIf="folio.estado == 2" lines="full">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col style="background-image: linear-gradient(-90deg,#0faf01,#7efc2a);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="this.select == 'alert'">
+    <ion-item lines="full" *ngFor="let folio of this.foliosAlert">
+      <ion-grid>
+        <ion-row (click) = "showFolio(folio)">
+          <ion-col style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+            <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+            <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+            <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+            <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+            <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+            <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+            <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <div *ngIf="foliosAlertOffline">
+      <ion-item lines="full" *ngFor="let folio of this.foliosAlertOffline">
+        <ion-grid>
+          <ion-row (click) = "showFolio(folio)">
+            <ion-col style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
+            <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+              <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+ 
+</ion-content>

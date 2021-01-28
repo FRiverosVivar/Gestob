@@ -1,0 +1,31 @@
+.sc-ion-segment-md-h {
+    --background: none;
+    --background-checked: rgba(var(--ion-color-dark-rgb,56,128,255),0.16);
+    --background-hover: rgba(var(--ion-color-dark-rgb,56,128,255),0.04);
+    --background-activated: rgba(var(--ion-color-dark-rgb,56,128,255),0.16);
+    --color: dimgrey;
+    --color-checked: var(--ion-color-primary,#66bd51);
+    --color-checked-disabled: var(--color-checked);
+    --indicator-color: #9E9E9E;
+}
+
+.title{
+    font-size: 1rem;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    color: var(--ion-color-primary);
+}
+  
+.text{
+    font-size: 0.8rem;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.title-contract{
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+  

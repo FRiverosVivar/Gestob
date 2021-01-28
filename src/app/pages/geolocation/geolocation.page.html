@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Geolocalización</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <h2 class="title-contract">Contrato N° {{contract.contratoSafi}}</h2>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap" color=primary position="floating" style="font-weight: bold;">Nombre :</ion-label>
+      <ion-input color=dark type=text name=name [(ngModel)]="formGps.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-text-wrap" color=primary position="floating" style="font-weight: bold;">Dirección :</ion-label>
+      <ion-input color=dark type=text name=name [(ngModel)]="formGps.direccion"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap" color=primary position=fixed style="font-weight: bold;">Ubicación principal </ion-label>
+      <ion-checkbox slot="start" color="primary" [(ngModel)]="formGps.principal" style="margin: auto;margin-right: 4%;"></ion-checkbox>
+    </ion-item>
+
+    <div style="margin-top: 3%;">
+      <ion-button expand="block" (click)="UploadLocation()">
+        Subir Ubicación
+      </ion-button>
+    </div>
+</ion-content>

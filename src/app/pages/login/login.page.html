@@ -1,0 +1,20 @@
+<ion-content>
+  <img class="icon" src='assets/imgs/gestob.png' alt=''/>
+  <ion-item full style="margin: 0% 7%;">
+      <ion-label color=primary position=floating>
+          <ion-icon name=mail color=primary ></ion-icon> Email
+      </ion-label>
+      <ion-input color=dark type=email name=email [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item full style="margin: 0% 7%;">
+      <ion-label color=primary position=floating>
+          <ion-icon name=lock color=primary></ion-icon> Contraseña
+      </ion-label>
+      <ion-input color=dark type=password name=password [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-button class="ion-color-dark-tipo1 login" (click)="onSubmitLogin()" expand=block color=primary size=default>
+    Iniciar Sesión
+  </ion-button>
+  <div class="end">
+  </div>
+</ion-content>

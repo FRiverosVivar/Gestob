@@ -1,0 +1,21 @@
+<ion-tabs>
+  <ion-tab-bar color=dark slot="bottom">
+    <ion-tab-button tab="folio" mode="ios">
+      <ion-icon name="briefcase"></ion-icon>
+      <ion-label>Folio</ion-label>
+    </ion-tab-button>
+    <ion-tab-button *ngIf="((( user_info.tipo == 0 && book.type == 0) || (( user_info.tipo == 1 && !contract.contratoProvisorioFirmado || user_info.tipo == 0) && book.type == 1))) && contract.contratoEstado < 3" tab="newFolio" mode="ios">
+      <ion-icon name="clipboard"></ion-icon>
+      <ion-label>Nuevo Folio</ion-label>
+    </ion-tab-button>
+    <ion-tab-button *ngIf="( user_info.tipo == 3 && (( user_info.bossTipo == 0 && book.type == 0) || ((user_info.bossTipo == 1 || user_info.bossTipo == 0) && book.type == 1))) && contract.contratoEstado < 3"  tab="newFolio" mode="ios">
+      <ion-icon name="clipboard"></ion-icon>
+      <ion-label>Nuevo Folio</ion-label>
+    </ion-tab-button>
+    <ion-tab-button *ngIf="(( isEspecialistAsigned ) || (book.type == 2 && isHaveSpecialist && [0,3].includes(user_info.tipo) || ( book.type == 2 && isHaveSpecialist && !contract.contratoProvisorioFirmado && user_info.tipo == 1) )) && contract.contratoEstado < 3 "  tab="newFolio" mode="ios">
+      <ion-icon name="clipboard"></ion-icon>
+      <ion-label>Nuevo Folio</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+

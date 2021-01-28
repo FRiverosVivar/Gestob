@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-title class="ion-text-center">Contratos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="this.contracts.length != 0">
+    <ion-item lines="full" *ngFor="let contract of this.contracts">
+      <ion-grid>
+        <ion-row (click)="showContract(contract)">
+          <ion-col *ngIf="contract.contratoEstado == 0" style="background-image: linear-gradient(-90deg,#8c00ff,#0ef);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col *ngIf="contract.contratoEstado == 1" style="background-image: linear-gradient(-90deg,#ffc400,#ef0);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col *ngIf="contract.contratoEstado == 2" style="background-image: linear-gradient(-90deg,#0faf01,#7efc2a);" size="0.5" class="align-items-center"></ion-col>
+          <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
+            <p class="title"><strong>{{contract.contratoSafi}}</strong></p>
+            <p class="text">{{contract.contratoNombre}}</p>
+            <p class="text"><strong class="fecha">Inicio: &nbsp;{{ contract.contratoInicio }}</strong></p>
+            <p class="text"><strong class="fecha">Término: &nbsp;{{ contract.contratoTermino }}</strong></p>
+            <p class="text">{{ contract.empresaNombre }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="!this.networkService.getCurrentNetworkStatus()" lines="full">
+      <ion-button (click)="test()" slot="start">
+        reload
+      </ion-button>
+      <ion-label> Button Start/End </ion-label>
+    </ion-item> -->
+  </ion-list>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-content fullscreen>
+    <ion-item style="margin-top: 4%;" class="close-fake text-center" lines="none">
+        <ion-button (click)="close()" fill="clear">
+            <ion-icon name="close" slot="start"></ion-icon>
+            Cerrar
+        </ion-button>
+    </ion-item>
+
+    <div text-center>
+        <ion-grid>
+            <ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%">
+                <ion-col>
+                    <ion-fab-button class="play-pause-btn" (click)="playRecording()" color="primary" *ngIf="!is_playing" >
+                        <ion-icon name="volume-high"></ion-icon>
+                    </ion-fab-button>
+            
+                    <ion-fab-button class="play-pause-btn" (click)="pausePlayRecording()" color="primary" *ngIf="is_playing">
+                        <ion-icon name="volume-off"></ion-icon>
+                    </ion-fab-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <ion-item class="close-fake text-center">
+        <ion-label class="ion-text-wrap" color=primary position="floating" style="font-weight: bold;">Nombre audio :</ion-label>
+        <ion-input color=light type=text name=name [(ngModel)]="filename"></ion-input>
+    </ion-item>
+
+    <ion-button style="margin-top: 5%;" expand="full" (click)="subirAudio()" [disabled]="!filename">
+        Subir audio
+    </ion-button>
+</ion-content>

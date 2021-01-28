@@ -1,0 +1,23 @@
+<ion-content fullscreen>
+  <ion-item style="margin-top: 4%;" class="close-fake text-center" lines="none">
+      <ion-button (click)="close()" fill="clear">
+          <ion-icon name="close" slot="start"></ion-icon>
+          Cerrar
+      </ion-button>
+  </ion-item>
+
+  <div style="text-align: center;">
+    <img style="width: 30%" *ngIf="isPdf" src='assets/imgs/pdf.png' alt=''/>
+    <img style="width: 30%" *ngIf="!isPdf" src='assets/imgs/dwg.png' alt=''/>
+    <h3 style="text-align: center; color: var(--ion-color-light); margin-top:2%" color="light">{{name}}</h3>   
+  </div>
+
+  <ion-item class="close-fake text-center">
+      <ion-label class="ion-text-wrap" color=primary position="floating" style="font-weight: bold;">Nombre documento :</ion-label>
+      <ion-input color=light type=text name=name [(ngModel)]="filename"></ion-input>
+  </ion-item>
+
+  <ion-button style="margin-top: 5%;" expand="full" (click)="subirDocument()" [disabled]="!filename">
+      Subir documento
+  </ion-button>
+</ion-content>

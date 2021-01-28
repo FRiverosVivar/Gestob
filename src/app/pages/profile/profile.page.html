@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-title class="ion-text-center">Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-avatar class="photoProfile">
+    <img *ngIf="!user.avatar.url" src="/assets/imgs/avatar.png">
+    <img *ngIf="user.avatar.url" [src]="user.avatar.url">
+  </ion-avatar>
+  <ion-item>
+    <p><strong style="color: #66bd51">Nombre :</strong> {{user.name}} {{user.last_names}}</p>
+  </ion-item>
+  <ion-item>
+    <p><strong style="color: #66bd51">Rut : </strong> {{user.rut}}</p>
+  </ion-item>
+  <ion-item>
+    <p><strong style="color: #66bd51">Email : </strong> {{user.email}}</p>
+  </ion-item>
+  <ion-item>
+    <p><strong style="color: #66bd51">Teléfono :</strong>{{user.phone}}</p>
+  </ion-item>   
+  <div class="end">
+    <ion-button color="danger" expand="block" (click)="logout()">
+      Cerrar Sesión
+    </ion-button>
+  </div>
+</ion-content>

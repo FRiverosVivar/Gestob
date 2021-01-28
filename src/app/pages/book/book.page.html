@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item lines="full" *ngFor="let book of this.books">
+      <ion-grid>
+        <ion-row (click)="showBook(book)">
+          <ion-col size="12" class="align-items-start">
+            <p class="title"><strong>{{book.nombre}}</strong></p>
+            <p class="text"><strong>Borradores :</strong> {{book.borradores}}</p>
+            <p class="text"><strong>Firmados :</strong> {{book.firmados}}</p>
+            <p class="text"><strong>Vistos :</strong> {{book.vistos}}</p>
+            <p class="text"><strong>Alertas :</strong> {{book.alertas}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,40 @@
+.icon{
+    width: 500px;
+    padding: 25% 25% 3% 25%;
+}
+
+.ion-color-dark-tipo1{
+    --ion-color-contrast: rgb(255, 255, 255) !important;;
+}
+
+.login{
+    margin: 6% 10%;
+    font-size: 0.9rem;
+}
+
+.foto{
+    padding: 20% 20%;
+}
+
+.end{
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    padding: 50px;
+}
+
+ion-content{
+    --background: none;
+    background-image: url('/assets/imgs/fondo.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ion-item {
+    --background: transparent;
+    --border-color: transparent;
+    margin: 3%;
+    margin-bottom: 0%;
+    border-bottom: 1px solid #66bd51;
+}

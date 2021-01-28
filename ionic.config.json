@@ -1,0 +1,7 @@
+{
+  "name": "ltecMobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

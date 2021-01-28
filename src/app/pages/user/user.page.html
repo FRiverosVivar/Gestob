@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let user of this.users">
+      <ion-item lines="full" *ngIf="user.enabled">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="align-items-start">
+              <p class="title"><strong>{{user.name}} {{user.last_names}}</strong></p>
+              <p class="text">{{user.rut}}</p>
+              <p class="text">{{user.phone}}</p>
+              <p class="text" *ngIf="user.type == 0"><strong>Inspector/ITO</strong></p>
+              <p class="text" *ngIf="user.type == 1"><strong>Residente</strong></p>
+              <p class="text" *ngIf="user.type == 2 && user.libros.length >= 0"><strong>Especialista</strong></p>
+              <p class="text" *ngIf="user.type == 3"><strong>Asistente</strong></p>
+              <p class="text" *ngIf="user.type == 4"><strong>Visita</strong></p>
+              <p class="text" *ngIf="user.type == 6"><strong>Auditor</strong></p>
+              <p class="text" *ngIf="user.type == 7"><strong>Revisor</strong></p>
+              <ng-template *ngIf="user.type == 8;then jefe"></ng-template>
+              <ng-template #jefe>
+                <ng-template *ngIf="user.rol != null;then poseeRol;else esDeContrato"></ng-template>
+                <ng-template #poseeRol>
+                  <p class="text"><strong>{{user.rol}}</strong></p>
+                </ng-template>
+                <ng-template #esDeContrato>
+                  <p class="text"><strong>Jefe de Contrato</strong></p>
+                </ng-template>
+              </ng-template>
+              <ng-template *ngIf="user.type == 0;then esInspector;else verificarSiguienteRol"></ng-template>
+              <ng-template #esInspector><p class="text"> Equipo: Mandante</p></ng-template>
+              <ng-template #verificarSiguienteRol>
+                <ng-template *ngIf="user.type == 1;then esContratista;else verificarRol"></ng-template>
+                <ng-template #esContratista>
+                  <p class="text"> Equipo: Contratista</p>
+                </ng-template>
+                <ng-template #verificarRol>
+                  <ng-template *ngIf="user.type == 8;then equipoMandante;else esAuditor"></ng-template>
+                  <ng-template #equipoMandante>
+                    <p class="text"> Equipo: Mandante</p>
+                  </ng-template>
+                  <ng-template #esAuditor>
+                    <ng-template *ngIf="user.type == 6;then auditor;else verificar"></ng-template>
+                    <ng-template #auditor><p class="text"> Equipo: Mandante</p></ng-template>
+                    <ng-template #verificar>
+                      <ng-template *ngIf="user.boss_name =='Inspector Fiscal';then printFiscal;else printResidente"></ng-template>
+                      <ng-template #printFiscal><p class="text"> Equipo: Mandante</p></ng-template>
+                      <ng-template #printResidente><p class="text"> Equipo: Contratista</p></ng-template>
+                    </ng-template>
+                  </ng-template>
+                </ng-template>
+              </ng-template>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

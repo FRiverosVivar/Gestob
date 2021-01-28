@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color=dark style="padding-top: 3%;">
+    <ion-buttons slot="start" (click)="back()">
+      <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <p *ngIf="contract.contratoMandante"><strong style="color: #66bd51">Mandante :</strong> {{contract.contratoMandante}} </p>
+    <p *ngIf="!contract.contratoMandante"><strong style="color: #66bd51">Mandante :</strong> No registrado </p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoInstitucion"><strong style="color: #66bd51">Institución :</strong> {{contract.contratoInstitucion}}</p>
+    <p *ngIf="!contract.contratoInstitucion"><strong style="color: #66bd51">Institución :</strong> No registrado </p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoRegion"><strong style="color: #66bd51">Región : </strong> {{contract.contratoRegion}}</p>
+    <p *ngIf="!contract.contratoRegion"><strong style="color: #66bd51">Región : </strong> No registrado </p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.empresaNombre"><strong style="color: #66bd51">Contratista :</strong> {{contract.empresaNombre}}</p>
+    <p *ngIf="!contract.empresaNombre"><strong style="color: #66bd51">Contratista :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoNumeroResolucion"><strong style="color: #66bd51">N° Resolución :</strong> {{contract.contratoNumeroResolucion}}</p>
+    <p *ngIf="!contract.contratoNumeroResolucion"><strong style="color: #66bd51">N° Resolución :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoTramitacion"><strong style="color: #66bd51">Fecha de tramitación: :</strong> {{contract.contratoTramitacion}}</p>
+    <p *ngIf="!contract.contratoTramitacion"><strong style="color: #66bd51">Fecha de tramitación: :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoPlazo"><strong style="color: #66bd51">Plazo :</strong> {{contract.contratoPlazo}}</p>
+    <p *ngIf="!contract.contratoPlazo"><strong style="color: #66bd51">Plazo :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoInicio"><strong style="color: #66bd51">Fecha de inicio :</strong> {{contract.contratoInicio}}</p>
+    <p *ngIf="!contract.contratoInicio"><strong style="color: #66bd51">Fecha de inicio :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoTermino"><strong style="color: #66bd51">Fecha de termino :</strong> {{contract.contratoTermino}}</p>
+    <p *ngIf="!contract.contratoTermino"><strong style="color: #66bd51">Fecha de termino :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoPresupuesto"><strong style="color: #66bd51">Presupuesto oficial :</strong> {{contract.contratoPresupuesto}}</p>
+    <p *ngIf="!contract.contratoPresupuesto"><strong style="color: #66bd51">Presupuesto oficial :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoOferta"><strong style="color: #66bd51">Oferta Economica :</strong> {{contract.contratoOferta}}</p>
+    <p *ngIf="!contract.contratoOferta"><strong style="color: #66bd51">Oferta Economica :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoModalidad"><strong style="color: #66bd51">Modalidad de Contrato :</strong> {{contract.contratoModalidad}}</p>
+    <p *ngIf="!contract.contratoModalidad"><strong style="color: #66bd51">Modalidad de Contrato :</strong> No registrado</p>
+  </ion-item>   
+  <ion-item>
+    <p *ngIf="contract.contratoReajuste"><strong style="color: #66bd51">Reajuste :</strong> {{contract.contratoReajuste}}</p>
+    <p *ngIf="!contract.contratoReajuste"><strong style="color: #66bd51">Reajuste :</strong> No registrado</p>
+  </ion-item>
+  <ion-item>
+    <p *ngIf="contract.contratoIndiceBase"><strong style="color: #66bd51">Indice base :</strong> {{contract.contratoIndiceBase}}</p>
+    <p *ngIf="!contract.contratoIndiceBase"><strong style="color: #66bd51">Indice base :</strong> No registrado</p>
+  </ion-item>        
+</ion-content>
