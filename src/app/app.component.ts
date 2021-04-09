@@ -6,6 +6,7 @@ import { LtecAuthenticationService } from './service/authentication/ltec-authent
 import { Router } from '@angular/router';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent {
     private authService : LtecAuthenticationService,
     private router: Router,
     private keyboard: Keyboard,
-    private network: Network
+    private network: Network,
+    private androidPermission: AndroidPermissions
   ) {
     console.log("App Components");
     this.initializeApp();
@@ -36,7 +38,6 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#66bd51');
       this.statusBar.overlaysWebView(true);
       this.keyboard.disableScroll(true);
-
       this.authService.authenticationState.subscribe(state => {
         console.log('Auth change: ', state);
         console.log(this.count);

@@ -14,14 +14,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AgregarFotoPage implements OnInit {
 
+  @Input() fotos: any;
+  @Input() contrato:any
+  @Input() user: any
   contract: any;
-  user: any;
   fotosContrato: any[];
   foto: any;
 
   formDatosFoto: FormGroup;
-
-  @Input() fotos: any;
 
   options: CameraOptions = {
     quality: 100,
@@ -68,24 +68,29 @@ export class AgregarFotoPage implements OnInit {
   }
 
   guardarFoto(){
-    this.presentLoading();
-    this.restService.agregarFotoContrato(this.foto,this.formDatosFoto.value,this.contract).then(  
-      (res) => {
-        console.log("RES.DATA:  ",res.data); 
-        if (res.status == 200) {  
-          
-          this.popupAceptado("Foto creada exitosamente");
-          this.loading.dismiss()
-          this.modal.dismiss()
-        }else{
+    if(this.foto != null || this.foto != undefined){
+      this.presentLoading();
+      this.restService.agregarFotoContrato(this.foto,this.formDatosFoto.value,this.contract).then(  
+        (res) => {
+          console.log("RES.DATA:  ",res.data); 
+          if (res.status == 200) {  
+            
+            this.popupAceptado("Foto creada exitosamente");
+            this.loading.dismiss()
+            this.modal.dismiss()
+          }else{
+            this.loading.dismiss()
+            this.popupErrorForm("Ha ocurrido un error, por favor intentelo nuevamente.")
+          }
+        }, (error) => {
           this.loading.dismiss()
           this.popupErrorForm("Ha ocurrido un error, por favor intentelo nuevamente.")
         }
-      }, (error) => {
-        this.loading.dismiss()
-        this.popupErrorForm("Ha ocurrido un error, por favor intentelo nuevamente.")
-      }
-    )
+      )
+    }else{
+      this.popupErrorForm("Por favor añada una foto.")
+    }
+    
   }
 
   back(){
@@ -106,7 +111,7 @@ export class AgregarFotoPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'errorFormAlert',
       header: '',
-      message: '<ion-icon name="checkmark-outline" class="errorIcon"></ion-icon><br><h1 class="alertBody">'+text+'</h1>',
+      message: '<ion-icon name="checkmark-outline" class="errorIcon"></ion-icon><br><h3 class="alertBody">'+text+'</h3>',
       buttons: [{
         text: 'Ok'}]
     });
@@ -117,7 +122,7 @@ export class AgregarFotoPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'errorFormAlert',
       header: '',
-      message: '<ion-icon name="close-outline" class="errorIcon"></ion-icon><br><h1 class="alertBody">'+text+'</h1>',
+      message: '<ion-icon name="close-outline" class="errorIcon"></ion-icon><br><h3 class="alertBody">'+text+'</h3>',
       buttons: [
         { text: 'OK',
         }]

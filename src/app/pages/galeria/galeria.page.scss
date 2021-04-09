@@ -1,0 +1,26 @@
+.textBlue{
+    font-size:16px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.card-subtitle {
+    font-size: 11px;
+    margin: .2rem;
+    height: 1.5rem;
+    overflow: auto;
+    font-family: Montserrat-Medium;
+      color: #000000;
+}
+
+.deleteButton{
+    --box-shadow:unset;
+    --background:#666;
+    padding:0px;
+    margin:0px;
+    margin-left:5px
+}
+
+.removeSidesPadding{
+    padding-right: 0px;
+    padding-left: 0px;
+}

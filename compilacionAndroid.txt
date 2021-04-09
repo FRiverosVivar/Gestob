@@ -1,0 +1,3 @@
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore gestob.keystore app-release-unsigned.apk gestob
+
+pw: gmail.ltec

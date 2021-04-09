@@ -170,7 +170,6 @@ export class ContractPage implements OnInit,  OnDestroy, AfterViewInit  {
     if(this.networkService.getCurrentNetworkStatus() == ConnectionStatus.Online){
       this.restService.books(contract).then((res) => {
         this.dataService.setContract(contract);
-        //console.log("la data que retorna del books() es",JSON.stringify(res));
         let header = res.headers;
         let datos = JSON.parse(res.data);
         this.tokenService.setToken(header);
@@ -213,8 +212,7 @@ export class ContractPage implements OnInit,  OnDestroy, AfterViewInit  {
           this.loading.dismiss();
           this.router.navigate(['tabsBook/tabsBook/book'],{});
         },500);
-      }
-      else{
+      }else{
 
         console.log("NO HAY INTERNET Y NO HAY LIBROS")
         let allData = this.dataService.getAllData();
@@ -229,12 +227,12 @@ export class ContractPage implements OnInit,  OnDestroy, AfterViewInit  {
             this.dataService.setUsersOffline(contrato.usuarios);
             this.backButtonSubscription.unsubscribe();
             this.user = this.dataService.getUser();
-            setTimeout(() => {
-              this.loading.dismiss();
-              this.router.navigate(['tabsBook/tabsBook/book'],{});
-            },500);
           }
         }
+        setTimeout(() => {
+          this.loading.dismiss();
+          this.router.navigate(['tabsBook/tabsBook/book'],{});
+        },500);
       }
     }
   }

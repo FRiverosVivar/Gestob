@@ -1,0 +1,23 @@
+.textBlue{
+    font-size:16px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.encabezado-input{
+    font-size: 20px;
+    font-family: Avenir Roman;
+    text-decoration: none;
+  }
+.form-control {
+    width: 90%;
+  
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 1px 4px;
+    &.fecha {
+      padding: 1px 4px;
+    }
+    &:focus{
+      border: none;
+    }
+}

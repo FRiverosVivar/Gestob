@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ModalController, LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { ModalController, LoadingController, AlertController, ToastController, Platform } from '@ionic/angular';
 import { LtecRestService } from 'src/app/service/rest/ltec-rest.service';
 import { LtecTokenService } from 'src/app/service/token/ltec-token.service';
 import { DomSanitizer } from "@angular/platform-browser";
@@ -52,6 +52,7 @@ export class AudioModalPage implements OnInit {
     private networkService: NetworkService,
     private offlineService: OfflineManagerService,
     private storage: Storage,
+    private platform: Platform
   ) { }
 
   ngOnInit() {
@@ -87,7 +88,12 @@ export class AudioModalPage implements OnInit {
     });
     await loading.present();
     if(this.networkService.getCurrentNetworkStatus() ==  ConnectionStatus.Online){
-      this.restService.uploadAudio(this.folio,this.filename,'file://'+this.path).then((res) => {
+      let text:string
+      if(this.platform.is('ios'))
+        text = 'file://'
+      else
+        text = ''
+      this.restService.uploadAudio(this.folio,this.filename,text+this.path).then((res) => {
         console.log("la data que retorna del uploadAudio() es",JSON.stringify(res));
         let header = res.headers;
         this.tokenService.setToken(header);

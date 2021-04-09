@@ -186,7 +186,7 @@ export class LtecRestService {
   }
 
   obtenerFotoContrato(contract){
-    var header = this.token.getTokenUpdateFile();
+    var header = this.token.getTokenGet();
     var data = {}
     return this.httpAdvance.get(this.url + "contracts/"+ contract.contratoId +"/gallery_items",data,header);
   }

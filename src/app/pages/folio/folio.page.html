@@ -43,12 +43,18 @@
           <ion-col *ngIf="folio.estado == 3" style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
           <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
             <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
+            <p class="text" *ngIf="folio.modified_by"><strong class="fecha">Firmado por: {{folio.modified_by}}</strong></p>
+            <p class="text" *ngIf="!folio.modified_by"><strong class="fecha">Firmado por: No registrado</strong></p>
+            <p class="text" *ngIf="folio.leido_por"><strong class="fecha">Visto por: {{folio.leido_por}}</strong></p>
+            <p class="text" *ngIf="!folio.leido_por"><strong class="fecha">Visto por: No registrado</strong></p>
             <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
             <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
             <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
             <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
             <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
             <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            <p class="text" *ngIf="folio.modification_date"><strong class="fecha">Fecha de modificación: {{folio.modification_date}}</strong></p>
+            <p class="text" *ngIf="!folio.modification_date"><strong class="fecha">Fecha de modificación: No registrado</strong></p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -63,12 +69,18 @@
             <ion-col *ngIf="folio.estado == 3" style="background-image: linear-gradient(-90deg,red,#fa7575);" size="0.5" class="align-items-center"></ion-col>
             <ion-col size="11.5" class="align-items-start"  style="padding-left: 5%">
               <p class="title"><strong>N° {{folio.number}} - {{folio.asunto}}</strong></p>
-              <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
-              <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
-              <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
-              <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
-              <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
-              <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            <p class="text" *ngIf="folio.modified_by"><strong class="fecha">Firmado por: {{folio.modified_by}}</strong></p>
+            <p class="text" *ngIf="!folio.modified_by"><strong class="fecha">Firmado por: No registrado</strong></p>
+            <p class="text" *ngIf="folio.leido_por"><strong class="fecha">Visto por: {{folio.leido_por}}</strong></p>
+            <p class="text" *ngIf="!folio.leido_por"><strong class="fecha">Visto por: No registrado</strong></p>
+            <p class="text"><strong>Categoria : </strong>{{folio.categoria}}</p>
+            <p class="text"><strong>Prioridad : </strong>{{folio.prioridad}}</p>
+            <p class="text" *ngIf="folio.referencia"><strong>Referencia : </strong>{{folio.referencia}}</p>
+            <p class="text" *ngIf="!folio.referencia"><strong>Referencia : </strong>No registrado</p>
+            <p class="text" *ngIf="folio.fecha_limite"><strong class="fecha">Fecha limite: {{folio.fecha_limite}}</strong></p>
+            <p class="text" *ngIf="!folio.fecha_limite"><strong class="fecha">Fecha limite: No registrado</strong></p>
+            <p class="text" *ngIf="folio.modification_date"><strong class="fecha">Fecha de modificación: {{folio.modification_date}}</strong></p>
+            <p class="text" *ngIf="!folio.modification_date"><strong class="fecha">Fecha de modificación: No registrado</strong></p>
             </ion-col>
           </ion-row>
         </ion-grid>

@@ -3,50 +3,50 @@
     <ion-buttons slot="start" (click)="back()">
       <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
     </ion-buttons>
-    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+    <ion-title class="ion-text-center">Contrato N° {{contrato.contratoSafi}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="formDatosFoto">
     <ion-grid>
-  
-  <ion-row>
-    <ion-col size=6>
-      
-
-      <ion-item>
-        <img *ngIf="foto.base64 != null" src="{{foto.base64}}" style="margin: auto; width: 75px; height: 75px; display: block; border-radius: 10px; zoom:1.4;transform: rotate(90deg)" >
-      </ion-item>
-
       <ion-row>
-        <ion-col>
-          <ion-button expand="full" style="--background:#FF616D" (click)="obtenerFotosCamara()">
-            <h1 class="textBlue" style="color:white"> AGREGAR FOTO</h1>
-          </ion-button>
+        <ion-col></ion-col>
+        <ion-col size=6>
+          
+
+          <ion-item>
+            <img *ngIf="foto.base64 != null" src="{{foto.base64}}" style="margin: auto; width: 75px; height: 75px; display: block; border-radius: 10px; zoom:1.4;transform: rotate(90deg)" >
+          </ion-item>
+
+          <ion-row>
+            <ion-col>
+              <ion-button expand="full" style="--background:#2d2d2d" (click)="obtenerFotosCamara()">
+                <h1 class="textBlue" style="color:white"> AGREGAR FOTO</h1>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          
+
+          <ion-item class="item">
+            <ion-label class="encabezado-input" position="stacked">Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text"  class="form-control2" placeholder=" Nombre" ></ion-input>
+          </ion-item>
+
+          <ion-item class="item">
+            <ion-label class="encabezado-input" position="stacked">Periodo</ion-label>
+            <br>
+            <ion-datetime class="form-control" formControlName="fecha" displayFormat="M-YYYY" min="1970" max="2099" placeholder="Seleccione fecha" ></ion-datetime>
+          </ion-item>
+
+          <div class="end" style="margin-top: 3%;">
+            <ion-button expand="block" (click)="guardarFoto()">Guardar Imagen</ion-button>
+          </div>
+        
         </ion-col>
+        <ion-col></ion-col>
       </ion-row>
-      
-
-      <ion-item class="item">
-        <ion-label class="encabezado-input" position="stacked">Nombre</ion-label>
-        <ion-input formControlName="nombre" type="text"  class="form-control2" placeholder=" Nombre" ></ion-input>
-      </ion-item>
-
-      <ion-item class="item">
-        <ion-label class="encabezado-input" position="stacked">Fecha</ion-label>
-        <br>
-        <ion-datetime class="form-control fecha" formControlName="fecha" displayFormat="D/M/YYYY" min="1970" max="2010" placeholder="Seleccione fecha" ></ion-datetime>
-      </ion-item>
-
-      <div class="end" style="margin-top: 3%;">
-        <ion-button expand="block" (click)="guardarFoto()">Guardar Imagen</ion-button>
-      </div>
-
-    
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</form>
+    </ion-grid>
+  </form>
 
 </ion-content>

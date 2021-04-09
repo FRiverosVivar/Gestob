@@ -111,12 +111,13 @@ export class PopoverFolioPage implements OnInit {
 
     this.mediaCapture.captureVideo(options).then((res: MediaFile[]) => {
       this.load.message = "Procesando Video..."
+      console.log("PATH "+res[0].fullPath)
       setTimeout(() => {
         this.openModalVideo(this.platform.is("android") ? res[0].fullPath: 'file://' + res[0].fullPath);
         this.load.dismiss();
       },1000)
     },(error) => {
-      console.log("Error al tomar el video",error);
+      console.log("Error al tomar el video",JSON.stringify(error));
       this.load.dismiss();
       this.errorComponent('Video');
       this.closePopover();
@@ -200,33 +201,38 @@ export class PopoverFolioPage implements OnInit {
 
     if(this.platform.is("android")){
       this.fileChooser.open().then((uri) => {
-        this.load.message = "Procesando Documento..."
-        this.filePath.resolveNativePath(uri).then((newPath) => {
-          var fileExtension = newPath.substr(newPath.lastIndexOf('/') + 1);
-          var extension = fileExtension.substr(fileExtension.length - 3);
-          if(extension == "pdf" || extension == "dwg"){
-            setTimeout(() => {
-              this.openModalDocument(newPath,fileExtension);
+            this.load.message = "Procesando Documento..."
+            console.log("URI "+uri)
+            this.filePath.resolveNativePath(uri).then((newPath) => {
+
+              newPath = newPath.replace(/ /g,"%20")
+              console.log("URI2 "+newPath)
+              var fileExtension = newPath.substr(newPath.lastIndexOf('/') + 1);
+              var extension = fileExtension.substr(fileExtension.length - 3);
+              if(extension == "pdf" || extension == "dwg"){
+                setTimeout(() => {
+                  this.openModalDocument(newPath,fileExtension);
+                  this.load.dismiss();
+                },1000)
+              }
+              else{
+                this.load.dismiss();
+                this.noTypeDocument();
+                this.closePopover();
+              }
+            }, (error) => {
               this.load.dismiss();
-            },1000)
-          }
-          else{
+              this.errorComponent('Documento');
+              this.closePopover();
+              console.log(error);
+            })
+          },(error) => {
             this.load.dismiss();
-            this.noTypeDocument();
+            this.errorComponent('Documento');
             this.closePopover();
-          }
-        }, (error) => {
-          this.load.dismiss();
-          this.errorComponent('Documento');
-          this.closePopover();
-          console.log(error);
-        })
-      },(error) => {
-        this.load.dismiss();
-        this.errorComponent('Documento');
-        this.closePopover();
-        console.log(error);
-      })
+            console.log(error);
+          })
+      
     }
 
     if(this.platform.is("ios")){

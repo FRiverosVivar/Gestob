@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="105" id="libro.gestob.cl" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="107" id="libro.gestob.cl" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name> Gestob </name>
     <description>Libro de obra digital Gestob App.</description>
     <author email="alexis.espinoza@globalhap.com" href="http://www.globalhap.com/"> Global HAP </author>
@@ -22,6 +22,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="fullscreen" value="false" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />

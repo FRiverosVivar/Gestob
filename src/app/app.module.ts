@@ -39,7 +39,7 @@ import { IOSFilePicker } from '@ionic-native/file-picker/ngx';
 import { AgregarFotoPageModule } from './pages/galeria/agregar-foto/agregar-foto.module';
 import { AgregarFotoPage } from './pages/galeria/agregar-foto/agregar-foto.page';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [
@@ -83,6 +83,7 @@ import {ReactiveFormsModule,FormsModule} from '@angular/forms';
     Keyboard,
     Network,
     Geolocation,
+    AndroidPermissions,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

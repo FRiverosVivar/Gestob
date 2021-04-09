@@ -3,25 +3,31 @@
     <ion-buttons slot="start" (click)="back()">
       <ion-icon style="zoom:2.0;" name="arrow-round-back"></ion-icon>
     </ion-buttons>
-    <ion-title class="ion-text-center">Contrato N° {{contract.contratoSafi}}</ion-title>
+    <ion-title class="ion-text-center">Contrato Nº {{contract.contratoSafi}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   
-  <ion-row>
-    <ion-col>
-      <ion-button expand="full" style="--background:#FF616D" (click)="modalAgregarFoto(fotosContrato)">
-        <h1 class="textBlue" style="color:white"> AGREGAR FOTO AL CONTRATO</h1>
-      </ion-button>
-    </ion-col>
-  </ion-row>
+  <div style="margin-top: 3%;">
+    <ion-button expand="block" (click)="modalAgregarFoto(fotosContrato)">
+      AGREGAR FOTO
+    </ion-button>
+  </div>
   
   <ion-grid>
     <ion-row class="ion-align-items-center">
-      <ion-col *ngFor="let fotos of fotosContrato" class="ion-text-center" size=4 style="margin-right: 50px; margin-left: auto" (click)="verPsicologo(s)">
-        <img src="{{fotos.data}}" style="margin: auto; width: 75px; height: 75px; display: block; border-radius: 10px; zoom:1.4;transform: rotate(90deg)">
+
+      <ion-col *ngFor="let fotos of fotosLinks" class="ion-text-center" size=4 style="margin-right: auto; margin-left: auto">
+        <img src="{{fotos.link}}" style="margin: auto; width: 75px; height: 75px; display: block; border-radius: 10px; zoom:1.4;transform: rotate(90deg)">
+        <p class="card-subtitle">{{"Nombre: " + fotos.nombre}} </p>
+        <p class="card-subtitle">{{"Periodo: " + fotos.periodo}}</p>
+        <p class="card-subtitle">{{"Fecha: " + fotos.fecha}}</p>
+        <!--<ion-button class="deleteButton" expand="block">
+          <ion-icon name="trash" style="color: #fff;"></ion-icon>
+        </ion-button>-->
       </ion-col>
+      
     </ion-row>
   </ion-grid>
   

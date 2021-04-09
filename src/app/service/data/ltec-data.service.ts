@@ -250,6 +250,9 @@ export class LtecDataService {
         if(!list_folio.data[folio].terminado){
           var d1 = new Date();
           var d2 = new Date(list_folio.data[folio].deadline_date);
+          let fecha = list_folio.data[folio].modification_date.split('T')[0]
+          let aux = list_folio.data[folio].modification_date.split('T')[1]
+          fecha = fecha + " "+ aux.split('.')[0]
           if(d1.getTime() > d2.getTime() && list_folio.data[folio].status != 0){
             this.folios.push({
               categoria: this.CATEGORIAS_FOLIO[list_folio.data[folio].category],
@@ -258,6 +261,9 @@ export class LtecDataService {
               contenido: list_folio.data[folio].content,
               number: list_folio.data[folio].folio_number,
               creado: list_folio.data[folio].created_by,
+              modified_by: list_folio.data[folio].modified_by,
+              leido_por: list_folio.data[folio].leido_por,
+              modification_date: fecha,
               id: list_folio.data[folio].id,
               prioridad: this.PRIORITY_FOLIO[list_folio.data[folio].priority],
               prioridadNumber: list_folio.data[folio].priority,
@@ -278,6 +284,9 @@ export class LtecDataService {
               contenido: list_folio.data[folio].content,
               number: list_folio.data[folio].folio_number,
               creado: list_folio.data[folio].created_by,
+              modified_by: list_folio.data[folio].modified_by,
+              leido_por: list_folio.data[folio].leido_por,
+              modification_date: fecha,
               id: list_folio.data[folio].id,
               prioridad: this.PRIORITY_FOLIO[list_folio.data[folio].priority],
               prioridadNumber: list_folio.data[folio].priority,
@@ -292,6 +301,9 @@ export class LtecDataService {
           }
         }
         else{
+          let fecha = list_folio.data[folio].modification_date.split('T')[0]
+          let aux = list_folio.data[folio].modification_date.split('T')[1]
+          fecha = fecha + " "+ aux.split('.')[0]
           this.folios.push({
             categoria: this.CATEGORIAS_FOLIO[list_folio.data[folio].category],
             categoriaNumber: list_folio.data[folio].category,
@@ -299,6 +311,9 @@ export class LtecDataService {
             contenido: list_folio.data[folio].content,
             number: list_folio.data[folio].folio_number,
             creado: list_folio.data[folio].created_by,
+            modified_by: list_folio.data[folio].modified_by,
+            leido_por: list_folio.data[folio].leido_por,
+            modification_date: fecha,
             id: list_folio.data[folio].id,
             prioridad: this.PRIORITY_FOLIO[list_folio.data[folio].priority],
             prioridadNumber: list_folio.data[folio].priority,
@@ -313,6 +328,9 @@ export class LtecDataService {
         }
       }
       else{
+        let fecha = list_folio.data[folio].modification_date.split('T')[0]
+          let aux = list_folio.data[folio].modification_date.split('T')[1]
+          fecha = fecha + " "+ aux.split('.')[0]
         this.folios.push({
           categoria: this.CATEGORIAS_FOLIO[list_folio.data[folio].category],
           categoriaNumber: list_folio.data[folio].category,
@@ -320,6 +338,9 @@ export class LtecDataService {
           contenido: list_folio.data[folio].content,
           number: list_folio.data[folio].folio_number,
           creado: list_folio.data[folio].created_by,
+          modified_by: list_folio.data[folio].modified_by,
+          leido_por: list_folio.data[folio].leido_por,
+          modification_date: fecha,
           id: list_folio.data[folio].id,
           prioridad: this.PRIORITY_FOLIO[list_folio.data[folio].priority],
           prioridadNumber: list_folio.data[folio].priority,
@@ -338,6 +359,9 @@ export class LtecDataService {
         if(!list_folio.data[folio].terminado){
           var d1 = new Date();
           var d2 = new Date(list_folio.data[folio].deadline_date);
+          let fecha = list_folio.data[folio].modification_date.split('T')[0]
+          let aux = list_folio.data[folio].modification_date.split('T')[1]
+          fecha = fecha + " "+ aux.split('.')[0]
           if(d1.getTime() > d2.getTime() && list_folio.data[folio].status != 0){
             this.foliosAlert.push({
               categoria: this.CATEGORIAS_FOLIO[list_folio.data[folio].category],
@@ -346,6 +370,9 @@ export class LtecDataService {
               contenido: list_folio.data[folio].content,
               number: list_folio.data[folio].folio_number,
               creado: list_folio.data[folio].created_by,
+              modified_by: list_folio.data[folio].modified_by,
+              leido_por: list_folio.data[folio].leido_por,
+              modification_date: fecha,
               id: list_folio.data[folio].id,
               prioridad: this.PRIORITY_FOLIO[list_folio.data[folio].priority],
               prioridadNumber: list_folio.data[folio].priority,
@@ -392,6 +419,9 @@ export class LtecDataService {
       contenido: folio.data.content,
       number: folio.data.folio_number,
       creado: folio.data.created_by,
+      modified_by: folio.data.modified_by,
+      leido_por: folio.data.leido_por,
+      modification_date: folio.data.modification_date,
       id: folio.data.id,
       prioridad: this.PRIORITY_FOLIO[folio.data.priority],
       prioridadNumber: folio.data.priority,
